@@ -14,6 +14,7 @@ export default function Main(props) {
           you will be given the result which is the most voted on place between all of you.
           If there is a tie, one will be picked at random out of the most popular ones.
       </p>
+      
       <Link to="/session"><button type="button">Lets get started!</button></Link>
     </div>
   );
