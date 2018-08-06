@@ -1,16 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPlaces} from '../actions/session-actions';
+import {fetchPlaces, addPlace} from '../actions/session-actions';
+import {Link} from 'react-router-dom';
 
 export class SessionForm extends React.Component {
   componentDidMount() {
     console.log('componentDidMount');
     this.props.dispatch(fetchPlaces());
   }
+  onSubmit() {
+    console.log(this.refs.newPlace.value);
+    const value = this.refs.newPlace.value;
+    this.props.dispatch(addPlace(value));
+    this.refs.newPlace.value = '';
+
+  }
 
   render() {
-    const addedPlaces = this.props.places.map(place => (
-      <li>
+    const addedPlaces = this.props.places.map(({place}, index) => (
+      <li key={index}>
         {place}
       </li>
     ));
@@ -19,14 +27,12 @@ export class SessionForm extends React.Component {
         <h4>1. Share this link with your friends!</h4>
         <button type="button">Save share link to clipboard.</button>
         <h4>2. Enter places where you feel like eating today!</h4>
-        <form>
-          <input type="text" name="place"/>
-          <input type="submit" value="Add to list"/>
-        </form>
+        <input type="text" name="place" ref="newPlace"/>
+        <input type="button" value="Add to list" onClick={() => this.onSubmit()}/>
         <ul>
           {addedPlaces}
         </ul>
-        <button type="button">Submit your choices.</button>
+        <Link to="/results"><button type="button">See the results!</button></Link>
 
       </div>
     );
