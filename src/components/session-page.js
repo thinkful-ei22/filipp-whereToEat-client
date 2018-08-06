@@ -1,8 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {fetchPlaces} from '../actions/session-actions';
 
-
-export class SessionForm extends React.component {
+export class SessionForm extends React.Component {
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.props.dispatch(fetchPlaces());
+  }
 
   render() {
     const addedPlaces = this.props.places.map(place => (

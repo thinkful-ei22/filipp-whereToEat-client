@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 export default function Main(props) {
   return (
-    <div className="card">
+    <div className="Main-page">
       <h1 className="App-title">Where should we eat?</h1>
       <h4>Having trouble deciding where to eat with your group? Let me help!</h4>
       <p className="App-intro">
