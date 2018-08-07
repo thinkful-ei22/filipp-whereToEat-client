@@ -3,10 +3,14 @@ import {
   FETCH_PLACES_SUCCESS,
   FETCH_PLACES_ERROR,
   ADD_PLACE_SUCCESS,
-  ADD_PLACE_ERROR
+  ADD_PLACE_ERROR,
+  NEW_SESSION_REQUEST,
+  NEW_SESSION_SUCCESS,
+  NEW_SESSION_ERROR
 } from '../actions/session-actions';
 
 const initialState = {
+  sessionId: null,
   places: [],
   loading: false,
   error: null
@@ -35,6 +39,22 @@ export default function reducer(state = initialState, action) {
       places: [...state.places, action.place]
     });
   } else if (action.type === ADD_PLACE_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    });
+  } else if (action.type === NEW_SESSION_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
+  } else if (action.type === NEW_SESSION_SUCCESS) {
+    console.log('ACTION', action);
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      sessionId: action.sessionId
+    });
+  } else if (action.type === NEW_SESSION_ERROR) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error

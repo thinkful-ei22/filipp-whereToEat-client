@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 export class SessionForm extends React.Component {
   componentDidMount() {
-    console.log('componentDidMount');
+    console.log('SESSION PAGE componentDidMount');
     this.props.dispatch(fetchPlaces());
   }
   onSubmit() {

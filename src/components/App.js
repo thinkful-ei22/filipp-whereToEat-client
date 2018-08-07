@@ -1,11 +1,13 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 import MainPage from './main-page';
 import SessionPage from './session-page';
 import Results from './results-page';
+import NewSession from './new-session';
 import './App.css';
 
 export default function App() {
@@ -13,9 +15,12 @@ export default function App() {
     <Router>
       <div className="App">
         <main>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/session" component={SessionPage} />
-          <Route exact path="/results" component={Results} />
+          <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/session/new" component={NewSession} />
+            <Route exact path="/session/:sessionId" component={SessionPage} />
+            <Route exact path="/results" component={Results} />
+          </Switch>
 
         </main>
       </div>
