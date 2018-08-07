@@ -19,7 +19,7 @@ export default function App() {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/session/new" component={NewSession} />
             <Route exact path="/session/:sessionId" component={SessionPage} />
-            <Route exact path="/results" component={Results} />
+            <Route exact path="/results/:sessionId" component={Results} />
           </Switch>
 
         </main>

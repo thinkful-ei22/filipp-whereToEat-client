@@ -48,7 +48,6 @@ export default function reducer(state = initialState, action) {
       loading: true
     });
   } else if (action.type === NEW_SESSION_SUCCESS) {
-    console.log('ACTION', action);
     return Object.assign({}, state, {
       loading: false,
       error: null,

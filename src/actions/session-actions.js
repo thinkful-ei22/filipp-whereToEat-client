@@ -47,27 +47,33 @@ export const newSessionError = error => ({
 });
 
 
-export const fetchPlaces = () => (dispatch) => {
+export const fetchPlaces = (sessionId) => (dispatch) => {
   console.log('fetch is running');
   dispatch(fetchPlacesRequest());
-  return fetch(`${API_BASE_URL}/api/places`)
+  return fetch(`${API_BASE_URL}/api/places`, {
+    method: 'GET',
+    header: {
+      sessionId
+    }
+
+  })
     .then(res => res.json())
     .then((places) => dispatch(fetchPlacesSuccess(places)))
     .catch(err => {dispatch(fetchPlacesError(err));
     });
 };
 
-export const addPlace = place => (dispatch) => {
+export const addPlace = (place, sessionId) => (dispatch) => {
   console.log('post is running');
-  console.log('PLACE', place);
+  console.log('PLACE', place, 'SESSIONID', sessionId);
   return fetch(`${API_BASE_URL}/api/places`, {
     method: 'POST',
     headers: {
       'content-type' : 'application/json'
     },
-    body: JSON.stringify({place})
+    body: JSON.stringify({place, sessionId})
   })
-    .then(res => res.json())
+    .then(res => {if (res.ok) return res.json();})
     .then((place) => dispatch(addPlaceSuccess(place)))
     .catch(err => {dispatch(addPlaceError(err));
     });

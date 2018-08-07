@@ -5,9 +5,7 @@ import {Redirect} from 'react-router-dom';
 
 export class SessionCreator extends React.Component {
   componentDidMount() {
-    console.log('session id', this.props.sessionId);
     this.props.dispatch(createSession());
-    console.log('session id after', this.props.sessionId);
   }
 
   render() {
