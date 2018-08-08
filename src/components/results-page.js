@@ -6,7 +6,7 @@ export class ResultsPage extends React.Component {
 
   componentDidMount() {
     console.log('RESULTS-PAGE componentDidMount');
-    const sessionId = this.props.sessionId;
+    const sessionId = this.props.match.params.sessionId;
     this.props.dispatch(fetchMostPopPlace(sessionId));
   }
 
@@ -14,15 +14,15 @@ export class ResultsPage extends React.Component {
     
 
     if (this.props.popularPlace !== null) {
-      const resultPlace = this.props.popularPlace.map(({popularPlace}) => (
-        <div>
-          {popularPlace}
+      const result = this.props.popularPlace.map(({place}, index) => (
+        <div key={index}>
+          {place}
         </div>
       ));
       return (
         <div className="results-page">
           <h2>The result is...</h2>
-          {resultPlace}
+          {result}
         </div>
       );
     } else {

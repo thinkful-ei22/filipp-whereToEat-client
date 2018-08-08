@@ -69,15 +69,12 @@ export const newSessionError = error => ({
 export const fetchPlaces = (sessionId) => (dispatch) => {
   console.log('fetch is running');
   dispatch(fetchPlacesRequest());
-  return fetch(`${API_BASE_URL}/api/places`, {
-    method: 'GET',
-    header: {
-      sessionId
-    }
-
-  })
+  return fetch(`${API_BASE_URL}/api/places/${sessionId}`)
     .then(res => res.json())
-    .then((places) => dispatch(fetchPlacesSuccess(places)))
+    .then((places) => {
+      console.log('PLACES', places);
+      dispatch(fetchPlacesSuccess(places));
+    })
     .catch(err => {dispatch(fetchPlacesError(err));
     });
 };
@@ -86,16 +83,12 @@ export const fetchPlaces = (sessionId) => (dispatch) => {
 export const fetchMostPopPlace = (sessionId) => (dispatch) => {
   console.log('fetching most popular place');
   dispatch(fetchMostPopPlaceRequest());
-  return fetch(`${API_BASE_URL}/api/results`, {
-    method: 'GET',
-    header: {
-      sessionId
-    }
-  })
+  return fetch(`${API_BASE_URL}/api/results/${sessionId}`)
     .then(res => res.json())
     .then((popularPlace) => {
+      console.log('POP RESULT', popularPlace);
       dispatch(fetchMostPopPlaceSuccess(popularPlace));
-      console.log('POP RESULT', popularPlace);})
+    })
     .catch(err => {dispatch(fetchMostPopPlaceError(err));
     });
 

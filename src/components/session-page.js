@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom';
 
 export class SessionForm extends React.Component {
   componentDidMount() {
-    const sessionId = this.props.sessionId;
+    const sessionId = this.props.match.params.sessionId;
     console.log('SESSION-PAGE componentDidMount');
     this.props.dispatch(fetchPlaces(sessionId));
   }
   onSubmit() {
-    const value = this.refs.newPlace.value;
-    const sessionId = this.props.sessionId;
+    const value = this.refs.newPlace.value.toLowerCase();
+    const sessionId = this.props.match.params.sessionId;
     console.log('SESSION ID', sessionId);
     this.props.dispatch(addPlace(value, sessionId));
     this.refs.newPlace.value = '';
@@ -34,7 +34,7 @@ export class SessionForm extends React.Component {
         <ul>
           {addedPlaces}
         </ul>
-        <Link to={`/results/${this.props.sessionId}`}><button type="button">See the results!</button></Link>
+        <Link to={`/results/${this.props.match.params.sessionId}`}><button type="button">See the results!</button></Link>
 
       </div>
     );
