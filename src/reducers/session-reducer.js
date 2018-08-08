@@ -9,7 +9,10 @@ import {
   NEW_SESSION_ERROR,
   FETCH_MOST_POP_PLACE_REQUEST,
   FETCH_MOST_POP_PLACE_SUCCESS,
-  FETCH_MOST_POP_PLACE_ERROR
+  FETCH_MOST_POP_PLACE_ERROR,
+  DELETE_PLACE_REQUEST,
+  DELETE_PLACE_SUCCESS,
+  DELETE_PLACE_ERROR
 } from '../actions/session-actions';
 
 const initialState = {
@@ -76,6 +79,22 @@ export default function reducer(state = initialState, action) {
       loading: false,
       error: null,
       popularPlace: action.popularPlace
+    });
+  } else if (action.type === DELETE_PLACE_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
+  } else if (action.type === DELETE_PLACE_SUCCESS) {
+    console.log('ACTION', action);
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      places: state.places.filter(place => place.id !== action.deleteId)
+    });
+  } else if (action.type === DELETE_PLACE_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
     });
   }
 

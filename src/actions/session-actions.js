@@ -34,8 +34,6 @@ export const fetchMostPopPlaceError = error => ({
   error
 });
 
-
-
 export const ADD_PLACE_SUCCESS = 'ADD_PLACE_SUCCESS';
 export const addPlaceSuccess = place => ({
   type: ADD_PLACE_SUCCESS,
@@ -62,6 +60,23 @@ export const newSessionSuccess = sessionId => ({
 export const NEW_SESSION_ERROR = 'NEW_SESSION_ERROR';
 export const newSessionError = error => ({
   type: NEW_SESSION_ERROR,
+  error
+});
+
+export const DELETE_PLACE_REQUEST = 'DELETE_PLACE_REQUEST';
+export const detelePlaceRequest = () => ({
+  type: DELETE_PLACE_REQUEST
+});
+
+export const DELETE_PLACE_SUCCESS = 'DELETE_PLACE_SUCCESS';
+export const deletePlaceSuccess = deleteId => ({
+  type: DELETE_PLACE_SUCCESS,
+  deleteId
+});
+
+export const DELETE_PLACE_ERROR = 'const DELETE_PLACE_ERROR';
+export const deletePlaceError = error => ({
+  type: DELETE_PLACE_ERROR,
   error
 });
 
@@ -126,5 +141,23 @@ export const createSession = () => (dispatch) => {
       dispatch(newSessionSuccess(sessionId));
     })
     .catch(err => {dispatch(newSessionError(err));
+    });
+};
+
+export const deletePlace = (deleteId) => (dispatch) => {
+  console.log('Delete place is running');
+  dispatch(detelePlaceRequest());
+  return fetch(`${API_BASE_URL}/api/places`, {
+    method: 'DELETE',
+    headers: {
+      'content-type' : 'application/json'
+    },
+    body: JSON.stringify({deleteId})
+  })
+    .then(() => {
+      console.log('DELETE ID', deleteId);
+      dispatch(deletePlaceSuccess(deleteId));
+    })
+    .catch(err => {dispatch(deletePlaceError(err));
     });
 };

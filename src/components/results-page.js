@@ -14,15 +14,11 @@ export class ResultsPage extends React.Component {
     
 
     if (this.props.popularPlace !== null) {
-      const result = this.props.popularPlace.map(({place}, index) => (
-        <div key={index}>
-          {place}
-        </div>
-      ));
+      const result = this.props.popularPlace._id;
       return (
         <div className="results-page">
           <h2>The result is...</h2>
-          {result}
+          <h4>{result}</h4>
         </div>
       );
     } else {

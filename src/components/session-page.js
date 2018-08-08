@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPlaces, addPlace} from '../actions/session-actions';
+import {fetchPlaces, addPlace, deletePlace} from '../actions/session-actions';
 import {Link} from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export class SessionForm extends React.Component {
   componentDidMount() {
@@ -17,17 +18,26 @@ export class SessionForm extends React.Component {
     this.refs.newPlace.value = '';
 
   }
+  onPlaceDelete(placeId) {
+    console.log('PLACEID', placeId);
+    this.props.dispatch(deletePlace(placeId));
+  }
 
   render() {
-    const addedPlaces = this.props.places.map(({place}, index) => (
-      <li key={index}>
-        {place}
+    console.log('places', this.props.places);
+    const addedPlaces = this.props.places.map((place, index) => (
+      <li key={index} className="entered-place">
+        <a>{place.place}</a>
+        <button type="button" onClick={() => this.onPlaceDelete(place.id)}>X</button>
       </li>
     ));
+    const url = window.location.href;
     return (
       <div className="session-form">
         <h4>1. Share this link with your friends!</h4>
-        <button type="button">Save share link to clipboard.</button>
+        <CopyToClipboard text={url}>
+          <button type="button">Save share link to clipboard.</button>
+        </CopyToClipboard>
         <h4>2. Enter places where you feel like eating today!</h4>
         <input type="text" name="place" ref="newPlace"/>
         <input type="button" value="Add to list" onClick={() => this.onSubmit()}/>
