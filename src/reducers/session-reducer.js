@@ -6,12 +6,16 @@ import {
   ADD_PLACE_ERROR,
   NEW_SESSION_REQUEST,
   NEW_SESSION_SUCCESS,
-  NEW_SESSION_ERROR
+  NEW_SESSION_ERROR,
+  FETCH_MOST_POP_PLACE_REQUEST,
+  FETCH_MOST_POP_PLACE_SUCCESS,
+  FETCH_MOST_POP_PLACE_ERROR
 } from '../actions/session-actions';
 
 const initialState = {
   sessionId: null,
   places: [],
+  popularPlace: null,
   loading: false,
   error: null
 };
@@ -57,6 +61,21 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       loading: false,
       error: action.error
+    });
+  } else if (action.type === FETCH_MOST_POP_PLACE_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
+  } else if (action.type === FETCH_MOST_POP_PLACE_ERROR) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: action.error
+    });
+  } else if (action.type === FETCH_MOST_POP_PLACE_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      popularPlace: action.popularPlace
     });
   }
 

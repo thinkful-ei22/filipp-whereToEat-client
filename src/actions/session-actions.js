@@ -17,6 +17,25 @@ export const fetchPlacesError = error => ({
   error
 });
 
+export const FETCH_MOST_POP_PLACE_REQUEST = 'FETCH_MOST_POP_PLACE_REQUEST';
+export const fetchMostPopPlaceRequest = () => ({
+  type: FETCH_MOST_POP_PLACE_REQUEST
+});
+
+export const FETCH_MOST_POP_PLACE_SUCCESS = 'FETCH_MOST_POP_PLACE_SUCCESS';
+export const fetchMostPopPlaceSuccess = popularPlace => ({
+  type: FETCH_MOST_POP_PLACE_SUCCESS,
+  popularPlace
+});
+
+export const FETCH_MOST_POP_PLACE_ERROR = 'FETCH_MOST_POP_PLACE_ERROR';
+export const fetchMostPopPlaceError = error => ({
+  type: FETCH_MOST_POP_PLACE_ERROR,
+  error
+});
+
+
+
 export const ADD_PLACE_SUCCESS = 'ADD_PLACE_SUCCESS';
 export const addPlaceSuccess = place => ({
   type: ADD_PLACE_SUCCESS,
@@ -46,7 +65,7 @@ export const newSessionError = error => ({
   error
 });
 
-
+//Fetching ALL places for the current sessionId
 export const fetchPlaces = (sessionId) => (dispatch) => {
   console.log('fetch is running');
   dispatch(fetchPlacesRequest());
@@ -63,6 +82,26 @@ export const fetchPlaces = (sessionId) => (dispatch) => {
     });
 };
 
+//Fetch only the most popular place out of ones that share a sessionId
+export const fetchMostPopPlace = (sessionId) => (dispatch) => {
+  console.log('fetching most popular place');
+  dispatch(fetchMostPopPlaceRequest());
+  return fetch(`${API_BASE_URL}/api/results`, {
+    method: 'GET',
+    header: {
+      sessionId
+    }
+  })
+    .then(res => res.json())
+    .then((popularPlace) => {
+      dispatch(fetchMostPopPlaceSuccess(popularPlace));
+      console.log('POP RESULT', popularPlace);})
+    .catch(err => {dispatch(fetchMostPopPlaceError(err));
+    });
+
+};
+
+//Adding a new place to the current sessionId
 export const addPlace = (place, sessionId) => (dispatch) => {
   console.log('post is running');
   console.log('PLACE', place, 'SESSIONID', sessionId);
@@ -79,6 +118,7 @@ export const addPlace = (place, sessionId) => (dispatch) => {
     });
 };
 
+//Creating a unique session upon clicking 'Lets get started!'
 export const createSession = () => (dispatch) => {
   console.log('Create session is running');
   dispatch(newSessionRequest());
