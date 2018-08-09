@@ -99,7 +99,7 @@ export const fetchMostPopPlace = (sessionId) => (dispatch) => {
   console.log('fetching most popular place');
   dispatch(fetchMostPopPlaceRequest());
   return fetch(`${API_BASE_URL}/api/results/${sessionId}`)
-    .then(res => res.json())
+    .then(res => {if (res.ok) return res.json();})
     .then((popularPlace) => {
       console.log('POP RESULT', popularPlace);
       dispatch(fetchMostPopPlaceSuccess(popularPlace));
@@ -144,6 +144,7 @@ export const createSession = () => (dispatch) => {
     });
 };
 
+//Delete a certain palce when clicking X button
 export const deletePlace = (deleteId) => (dispatch) => {
   console.log('Delete place is running');
   dispatch(detelePlaceRequest());

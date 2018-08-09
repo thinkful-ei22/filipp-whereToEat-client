@@ -14,6 +14,7 @@ export class SessionForm extends React.Component {
     const value = this.refs.newPlace.value.toLowerCase();
     const sessionId = this.props.match.params.sessionId;
     console.log('SESSION ID', sessionId);
+    console.log('is this thing on');
     this.props.dispatch(addPlace(value, sessionId));
     this.refs.newPlace.value = '';
 
@@ -25,13 +26,14 @@ export class SessionForm extends React.Component {
 
   render() {
     console.log('places', this.props.places);
-    const addedPlaces = this.props.places.map((place, index) => (
-      <li key={index} className="entered-place">
+    const addedPlaces = this.props.places.map((place) => (
+      <li key={place.id} className="entered-place">
         <a>{place.place}</a>
         <button type="button" onClick={() => this.onPlaceDelete(place.id)}>X</button>
       </li>
     ));
     const url = window.location.href;
+    
     return (
       <div className="session-form">
         <h4>1. Share this link with your friends!</h4>
@@ -41,7 +43,7 @@ export class SessionForm extends React.Component {
         <h4>2. Enter places where you feel like eating today!</h4>
         <input type="text" name="place" ref="newPlace"/>
         <input type="button" value="Add to list" onClick={() => this.onSubmit()}/>
-        <ul>
+        <ul className="entered-places">
           {addedPlaces}
         </ul>
         <Link to={`/results/${this.props.match.params.sessionId}`}><button type="button">See the results!</button></Link>
