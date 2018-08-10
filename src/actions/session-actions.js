@@ -80,22 +80,17 @@ export const deletePlaceError = error => ({
   error
 });
 
-// export const SET_USERID_REQUEST = 'SET_USERID_REQUEST';
-// export const setUserIdRequest = () => ({
-//   type: SET_USERID_REQUEST
-// });
+export const SET_LOCATION_SUCCESS = 'SET_LOCATION_SUCCESS';
+export const setLocationSuccess = userLocation =>({
+  type: SET_LOCATION_SUCCESS,
+  userLocation
+});
 
-// export const SET_USERID_SUCCESS = 'SET_USERID_SUCCESS';
-// export const setUserIdSuccess = userId => ({
-//   type: SET_USERID_SUCCESS,
-//   userId
-// });
+export const setUserLocation = (userLocation) => (dispatch) => {
+  console.log('Setting location');
+  dispatch(setLocationSuccess(userLocation));
+};
 
-// export const SET_USERID_ERROR = 'SET_USERID_ERROR';
-// export const setUserIdError = error => ({
-//   type: SET_USERID_ERROR,
-//   error
-// });
 
 //Fetching ALL places for the current sessionId
 export const fetchPlaces = (sessionId, userId) => (dispatch) => {
@@ -112,10 +107,10 @@ export const fetchPlaces = (sessionId, userId) => (dispatch) => {
 };
 
 //Fetch only the most popular place out of ones that share a sessionId
-export const fetchMostPopPlace = (sessionId) => (dispatch) => {
+export const fetchMostPopPlace = (sessionId, userLocation) => (dispatch) => {
   console.log('fetching most popular place');
   dispatch(fetchMostPopPlaceRequest());
-  return fetch(`${API_BASE_URL}/api/results/${sessionId}`)
+  return fetch(`${API_BASE_URL}/api/results/${sessionId}/${userLocation}`)
     .then(res => {if (res.ok) return res.json();})
     .then((popularPlace) => {
       console.log('POP RESULT', popularPlace);
@@ -144,14 +139,15 @@ export const addPlace = (place, sessionId, userId) => (dispatch) => {
 };
 
 //Creating a unique session upon clicking 'Lets get started!'
-export const createSession = () => (dispatch) => {
+export const createSession = (userLocation) => (dispatch) => {
   console.log('Create session is running');
   dispatch(newSessionRequest());
   return fetch(`${API_BASE_URL}/api/session`, {
     method: 'POST',
     headers: {
       'content-type' : 'application/json'
-    }
+    },
+    body: JSON.stringify({userLocation})
   })
     .then(res => {if (res.ok) return res.json();})
     .then(({sessionId}) => {

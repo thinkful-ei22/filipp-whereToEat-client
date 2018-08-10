@@ -2,17 +2,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createSession} from '../actions/session-actions';
 import {Redirect} from 'react-router-dom';
-import {geolocated} from 'react-geolocated';
 
 export class SessionCreator extends React.Component {
+  
   componentDidMount() {
-    this.props.dispatch(createSession());
+    const userLocation = this.props.userLocation;
+    console.log('Location in new place', userLocation);
+    this.props.dispatch(createSession((userLocation)));
   }
 
   render() {
     if (this.props.sessionId !== null) {
       return (
-        <Redirect exact from="/session/new" to={`/session/${this.props.sessionId}`} />
+        <Redirect exact from="/session/new" to={`/session/${this.props.sessionId}/${this.props.userLocation}`} />
       );
     } else {
       return (
@@ -26,7 +28,8 @@ export class SessionCreator extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sessionId: state.sessionId
+    sessionId: state.sessionId,
+    userLocation: state.userLocation
   };
 };
 

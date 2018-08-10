@@ -7,6 +7,7 @@ export class ResultsPage extends React.Component {
   componentDidMount() {
     console.log('RESULTS-PAGE componentDidMount');
     const sessionId = this.props.match.params.sessionId;
+    const userLocation = this.props.userLocation;
     this.props.dispatch(fetchMostPopPlace(sessionId));
   }
 
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
   return {
     places: state.places,
     sessionId: state.sessionId,
-    popularPlace: state.popularPlace
+    popularPlace: state.popularPlace,
+    userLocation: state.userLocation
   };
 };
 

@@ -13,6 +13,7 @@ import {
   DELETE_PLACE_REQUEST,
   DELETE_PLACE_SUCCESS,
   DELETE_PLACE_ERROR,
+  SET_LOCATION_SUCCESS
 } from '../actions/session-actions';
 
 const initialState = {
@@ -21,7 +22,8 @@ const initialState = {
   popularPlace: null,
   loading: false,
   error: null,
-  userId: null
+  userId: null,
+  userLocation: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -96,7 +98,13 @@ export default function reducer(state = initialState, action) {
       loading: false,
       error: action.error
     });
-  }
+  } else if (action.type === SET_LOCATION_SUCCESS) {
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      userLocation: action.userLocation
+    });
+  } 
 
   return state;
 }

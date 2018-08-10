@@ -24,7 +24,7 @@ export class App extends React.Component {
             <Switch>
               <Route exact path="/" component={MainPage} />
               <Route exact path="/session/new" component={NewSession} />
-              <Route exact path="/session/:sessionId" component={SessionPage} />
+              <Route exact path="/session/:sessionId/:userLocation" component={SessionPage} />
               <Route exact path="/results/:sessionId" component={Results} />
             </Switch>
 
