@@ -12,7 +12,7 @@ import {
   FETCH_MOST_POP_PLACE_ERROR,
   DELETE_PLACE_REQUEST,
   DELETE_PLACE_SUCCESS,
-  DELETE_PLACE_ERROR
+  DELETE_PLACE_ERROR,
 } from '../actions/session-actions';
 
 const initialState = {
@@ -20,7 +20,8 @@ const initialState = {
   places: [],
   popularPlace: null,
   loading: false,
-  error: null
+  error: null,
+  userId: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -85,7 +86,6 @@ export default function reducer(state = initialState, action) {
       loading: true
     });
   } else if (action.type === DELETE_PLACE_SUCCESS) {
-    console.log('ACTION', action);
     return Object.assign({}, state, {
       loading: false,
       error: null,

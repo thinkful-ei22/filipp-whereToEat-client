@@ -3,29 +3,45 @@ import {connect} from 'react-redux';
 import {fetchPlaces, addPlace, deletePlace} from '../actions/session-actions';
 import {Link} from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import uuid4 from 'uuid/v4';
 
 export class SessionForm extends React.Component {
+
+  state = {
+    error: false,
+    userId: null
+  }
+
   componentDidMount() {
-    const sessionId = this.props.match.params.sessionId;
     console.log('SESSION-PAGE componentDidMount');
-    this.props.dispatch(fetchPlaces(sessionId));
+
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      userId =  uuid4();
+      localStorage.setItem('userId', userId);
+    }
+    console.log('userId', userId);
+    this.setState({userId: userId});
+
+    const sessionId = this.props.match.params.sessionId;
+    this.props.dispatch(fetchPlaces(sessionId, userId));
   }
   onSubmit() {
     const value = this.refs.newPlace.value.toLowerCase();
     const sessionId = this.props.match.params.sessionId;
-    console.log('SESSION ID', sessionId);
-    console.log('is this thing on');
-    this.props.dispatch(addPlace(value, sessionId));
-    this.refs.newPlace.value = '';
+    const userId = this.state.userId;
+    if (value === '') {
+      this.setState({error: true});
+    } else {
+    this.props.dispatch(addPlace(value, sessionId, userId));
+    this.refs.newPlace.value = '';}
 
   }
   onPlaceDelete(placeId) {
-    console.log('PLACEID', placeId);
     this.props.dispatch(deletePlace(placeId));
   }
 
   render() {
-    console.log('places', this.props.places);
     const addedPlaces = this.props.places.map((place) => (
       <li key={place.id} className="entered-place">
         <a>{place.place}</a>
@@ -41,6 +57,8 @@ export class SessionForm extends React.Component {
           <button type="button">Save share link to clipboard.</button>
         </CopyToClipboard>
         <h4>2. Enter places where you feel like eating today!</h4>
+        {this.state.error? 'Please enter a name': ''}
+        <br/>
         <input type="text" name="place" ref="newPlace"/>
         <input type="button" value="Add to list" onClick={() => this.onSubmit()}/>
         <ul className="entered-places">

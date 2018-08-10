@@ -74,17 +74,34 @@ export const deletePlaceSuccess = deleteId => ({
   deleteId
 });
 
-export const DELETE_PLACE_ERROR = 'const DELETE_PLACE_ERROR';
+export const DELETE_PLACE_ERROR = 'DELETE_PLACE_ERROR';
 export const deletePlaceError = error => ({
   type: DELETE_PLACE_ERROR,
   error
 });
 
+// export const SET_USERID_REQUEST = 'SET_USERID_REQUEST';
+// export const setUserIdRequest = () => ({
+//   type: SET_USERID_REQUEST
+// });
+
+// export const SET_USERID_SUCCESS = 'SET_USERID_SUCCESS';
+// export const setUserIdSuccess = userId => ({
+//   type: SET_USERID_SUCCESS,
+//   userId
+// });
+
+// export const SET_USERID_ERROR = 'SET_USERID_ERROR';
+// export const setUserIdError = error => ({
+//   type: SET_USERID_ERROR,
+//   error
+// });
+
 //Fetching ALL places for the current sessionId
-export const fetchPlaces = (sessionId) => (dispatch) => {
+export const fetchPlaces = (sessionId, userId) => (dispatch) => {
   console.log('fetch is running');
   dispatch(fetchPlacesRequest());
-  return fetch(`${API_BASE_URL}/api/places/${sessionId}`)
+  return fetch(`${API_BASE_URL}/api/places/${sessionId}/${userId}`)
     .then(res => res.json())
     .then((places) => {
       console.log('PLACES', places);
@@ -110,7 +127,7 @@ export const fetchMostPopPlace = (sessionId) => (dispatch) => {
 };
 
 //Adding a new place to the current sessionId
-export const addPlace = (place, sessionId) => (dispatch) => {
+export const addPlace = (place, sessionId, userId) => (dispatch) => {
   console.log('post is running');
   console.log('PLACE', place, 'SESSIONID', sessionId);
   return fetch(`${API_BASE_URL}/api/places`, {
@@ -118,7 +135,7 @@ export const addPlace = (place, sessionId) => (dispatch) => {
     headers: {
       'content-type' : 'application/json'
     },
-    body: JSON.stringify({place, sessionId})
+    body: JSON.stringify({place, sessionId, userId})
   })
     .then(res => {if (res.ok) return res.json();})
     .then((place) => dispatch(addPlaceSuccess(place)))

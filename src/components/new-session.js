@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createSession} from '../actions/session-actions';
 import {Redirect} from 'react-router-dom';
+import {geolocated} from 'react-geolocated';
 
 export class SessionCreator extends React.Component {
   componentDidMount() {

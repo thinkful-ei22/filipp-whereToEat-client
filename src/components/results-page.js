@@ -21,9 +21,11 @@ export class ResultsPage extends React.Component {
             className="result-title" target="_blank"
             rel="noopener noreferrer">
             {this.props.popularPlace.businesses[0].name}</a>
-          <img className="result-image" src={this.props.popularPlace.businesses[0].image_url} />
+          <img className="result-image" src={this.props.popularPlace.businesses[0].image_url} 
+            alt="The most voted on restaurant"/>
           <ul className="restaurant-info">
-            <li className="address">{this.props.popularPlace.businesses[0].location.display_address}</li>
+            <li className="address">{this.props.popularPlace.businesses[0].location.display_address[0]} <br/>
+              {this.props.popularPlace.businesses[0].location.display_address[1]}</li>
             <li className="get-directions"><a href={directionUrl} target="_blank"
               rel="noopener noreferrer">Get Directions</a></li>
             <li className="phone-number">{this.props.popularPlace.businesses[0].display_phone}</li>
