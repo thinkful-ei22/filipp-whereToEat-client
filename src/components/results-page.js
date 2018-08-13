@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchMostPopPlace} from '../actions/session-actions';
+import './results-page.css';
 
 export class ResultsPage extends React.Component {
 
@@ -8,7 +9,7 @@ export class ResultsPage extends React.Component {
     console.log('RESULTS-PAGE componentDidMount');
     const sessionId = this.props.match.params.sessionId;
     const userLocation = this.props.userLocation;
-    this.props.dispatch(fetchMostPopPlace(sessionId));
+    this.props.dispatch(fetchMostPopPlace(sessionId, userLocation));
   }
 
   render() {

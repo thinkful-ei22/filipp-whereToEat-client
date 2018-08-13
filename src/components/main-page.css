@@ -1,0 +1,43 @@
+.Main-page {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  background-color: #437C90;
+  padding: 40px;
+  border-radius: 3px;
+  display: block;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.user-location {
+  border: 2px solid #ADACB5;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.user-location, .get-started-button {
+  height: 30px;
+  width: 250px;
+  margin: 10px;
+  border-radius: 3px;
+}
+
+.get-started-button {
+  background-color: #255957;
+  height: 50px;
+  border: none;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+  border: 2px solid #ADACB5;
+}
+
+.get-started-button:hover {
+  background-color: #173635;
+}

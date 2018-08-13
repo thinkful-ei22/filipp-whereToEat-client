@@ -4,6 +4,7 @@ import {fetchPlaces, addPlace, deletePlace} from '../actions/session-actions';
 import {Link} from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import uuid4 from 'uuid/v4';
+import './session-page.css';
 
 export class SessionForm extends React.Component {
 
@@ -33,6 +34,7 @@ export class SessionForm extends React.Component {
     if (value === '') {
       this.setState({error: true});
     } else {
+    this.setState({error: false})
     this.props.dispatch(addPlace(value, sessionId, userId));
     this.refs.newPlace.value = '';}
 
@@ -44,8 +46,8 @@ export class SessionForm extends React.Component {
   render() {
     const addedPlaces = this.props.places.map((place) => (
       <li key={place.id} className="entered-place">
-        <a>{place.place}</a>
-        <button type="button" onClick={() => this.onPlaceDelete(place.id)}>X</button>
+        <a className="place-name">{place.place}</a>
+        <button type="button" className="remove-place-button" onClick={() => this.onPlaceDelete(place.id)}>X</button>
       </li>
     ));
     const url = window.location.href;
@@ -54,17 +56,18 @@ export class SessionForm extends React.Component {
       <div className="session-form">
         <h4>1. Share this link with your friends!</h4>
         <CopyToClipboard text={url}>
-          <button type="button">Save share link to clipboard.</button>
+          <button type="button" className="clipboard-button">Save share link to clipboard</button>
         </CopyToClipboard>
         <h4>2. Enter places where you feel like eating today!</h4>
         {this.state.error? 'Please enter a name' : ''}
-        <br/>
-        <input type="text" name="place" ref="newPlace"/>
-        <input type="button" value="Add to list" onClick={() => this.onSubmit()}/>
+        <input type="text" className="place" ref="newPlace" placeholder="Restaurant name"/>
+        <input type="button" className="add-to-list" value="Add to list" onClick={() => this.onSubmit()}/>
         <ul className="entered-places">
           {addedPlaces}
         </ul>
-        <Link to={`/results/${this.props.match.params.sessionId}`}><button type="button">See the results!</button></Link>
+        <h4>3. And finally...</h4>
+        <Link to={`/results/${this.props.match.params.sessionId}`}><button type="button"
+        className="see-results-button">See the results!</button></Link>
 
       </div>
     );

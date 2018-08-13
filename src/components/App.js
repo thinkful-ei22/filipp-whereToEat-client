@@ -8,7 +8,6 @@ import MainPage from './main-page';
 import SessionPage from './session-page';
 import Results from './results-page';
 import NewSession from './new-session';
-import './App.css';
 import {connect} from 'react-redux';
 
 
