@@ -1,0 +1,82 @@
+
+.burger-art {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  transform: rotate(-30deg);
+}
+
+.sub-art {
+  position: absolute;
+  top: 15%;
+  right: 6%;
+}
+
+.sandwich-art {
+  position: absolute;
+  top: 33%;
+  left: 20%;
+  transform: rotate(30deg);
+}
+
+.drink-art {
+  position: absolute;
+  top: 42%;
+  right: 20%;
+  transform: rotate(-25deg);
+}
+
+.coffee-art {
+  position: absolute;
+  top: 66%;
+  left: 12%;
+}
+
+.pancake-art {
+  position: absolute;
+  top: 75%;
+  right: 25%;
+}
+
+.ice-cream-art {
+  position: absolute;
+  top: 5%;
+  right: 25%;
+  transform: rotate(120deg);
+}
+
+.egg-art {
+  position: absolute;
+  top: 70%;
+  left: 35%;
+  transform: rotate(-25deg);
+}
+
+.drumstick-art {
+  position: absolute;
+  top: 5%;
+  left: 22%;
+  transform: rotate(-25deg);
+}
+
+.fries-art {
+  position: absolute;
+  top: 78%;
+  right: 45%;
+  transform: rotate(-25deg);
+}
+
+.burger-art, .sub-art, .sandwich-art, .drink-art, .coffee-art, .pancake-art,
+  .ice-cream-art, .egg-art, .drumstick-art, .fries-art {
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 800px) and (max-height: 1030px) {
+    .burger-art, .sub-art, .sandwich-art, .drink-art, .coffee-art, .pancake-art,
+    .ice-cream-art, .egg-art, .drumstick-art, .fries-art {
+      display: none;
+    }
+    body {
+      background-color: #437C90;
+    }
+  }
