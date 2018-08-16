@@ -1,15 +1,16 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setUserLocation} from '../actions/session-actions';
-import './main-page.css';
-import './background-image.css';
+import {setUserLocation} from '../actions/session-Info.actions';
+import './styles/main-page.css';
+import './styles/background-image.css';
+
 import fullPizza from '../images/pizza-full.png';
 import Hamburger from '../images/hamburger.png';
 import Sub from '../images/sub.png';
 import Sandwich from '../images/sandwich.png';
 import Soda from '../images/soda.png';
-import Coffee from '../images/soda.png';
+import Coffee from '../images/coffee.png';
 import Pancakes from '../images/pancakes.png';
 import IceCream from '../images/ice-cream.png';
 import Egg from '../images/egg.png';
@@ -33,7 +34,7 @@ export class Main extends React.Component {
             history.push("/session/new");
           }
       } else {
-        console.log('LOCATION', userLocation);
+        //console.log('LOCATION', userLocation);
 
         this.props.dispatch(setUserLocation(userLocation));
         history.push("/session/new");
@@ -81,7 +82,7 @@ export class Main extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userLocation: state.userLocation
+    userLocation: state.sessionInfo.userLocation
   };
 };
 

@@ -46,23 +46,6 @@ export const addPlaceError = error => ({
   error
 });
 
-export const NEW_SESSION_REQUEST = 'NEW_SESSION_REQUEST';
-export const newSessionRequest = () => ({
-  type: NEW_SESSION_REQUEST
-});
-
-export const NEW_SESSION_SUCCESS = 'NEW_SESSION_SUCCESS';
-export const newSessionSuccess = sessionId => ({
-  type: NEW_SESSION_SUCCESS,
-  sessionId
-});
-
-export const NEW_SESSION_ERROR = 'NEW_SESSION_ERROR';
-export const newSessionError = error => ({
-  type: NEW_SESSION_ERROR,
-  error
-});
-
 export const DELETE_PLACE_REQUEST = 'DELETE_PLACE_REQUEST';
 export const detelePlaceRequest = () => ({
   type: DELETE_PLACE_REQUEST
@@ -80,26 +63,15 @@ export const deletePlaceError = error => ({
   error
 });
 
-export const SET_LOCATION_SUCCESS = 'SET_LOCATION_SUCCESS';
-export const setLocationSuccess = userLocation =>({
-  type: SET_LOCATION_SUCCESS,
-  userLocation
-});
-
-export const setUserLocation = (userLocation) => (dispatch) => {
-  console.log('Setting location');
-  dispatch(setLocationSuccess(userLocation));
-};
-
 
 //Fetching ALL places for the current sessionId
 export const fetchPlaces = (sessionId, userId) => (dispatch) => {
-  console.log('fetch is running');
+  //console.log('fetch is running');
   dispatch(fetchPlacesRequest());
   return fetch(`${API_BASE_URL}/api/places/${sessionId}/${userId}`)
     .then(res => res.json())
     .then((places) => {
-      console.log('PLACES', places);
+      //console.log('PLACES', places);
       dispatch(fetchPlacesSuccess(places));
     })
     .catch(err => {dispatch(fetchPlacesError(err));
@@ -108,12 +80,12 @@ export const fetchPlaces = (sessionId, userId) => (dispatch) => {
 
 //Fetch only the most popular place out of ones that share a sessionId
 export const fetchMostPopPlace = (sessionId, userLocation) => (dispatch) => {
-  console.log('fetching most popular place');
+  //console.log('fetching most popular place');
   dispatch(fetchMostPopPlaceRequest());
   return fetch(`${API_BASE_URL}/api/results/${sessionId}/${userLocation}`)
     .then(res => {if (res.ok) return res.json();})
     .then((popularPlace) => {
-      console.log('POP RESULT', popularPlace);
+      //console.log('POP RESULT', popularPlace);
       dispatch(fetchMostPopPlaceSuccess(popularPlace));
     })
     .catch(err => {dispatch(fetchMostPopPlaceError(err));
@@ -123,8 +95,8 @@ export const fetchMostPopPlace = (sessionId, userLocation) => (dispatch) => {
 
 //Adding a new place to the current sessionId
 export const addPlace = (place, sessionId, userId) => (dispatch) => {
-  console.log('post is running');
-  console.log('PLACE', place, 'SESSIONID', sessionId);
+  //console.log('post is running');
+  //console.log('PLACE', place, 'SESSIONID', sessionId);
   return fetch(`${API_BASE_URL}/api/places`, {
     method: 'POST',
     headers: {
@@ -138,28 +110,9 @@ export const addPlace = (place, sessionId, userId) => (dispatch) => {
     });
 };
 
-//Creating a unique session upon clicking 'Lets get started!'
-export const createSession = (userLocation) => (dispatch) => {
-  console.log('Create session is running');
-  dispatch(newSessionRequest());
-  return fetch(`${API_BASE_URL}/api/session`, {
-    method: 'POST',
-    headers: {
-      'content-type' : 'application/json'
-    },
-    body: JSON.stringify({userLocation})
-  })
-    .then(res => {if (res.ok) return res.json();})
-    .then(({sessionId}) => {
-      dispatch(newSessionSuccess(sessionId));
-    })
-    .catch(err => {dispatch(newSessionError(err));
-    });
-};
-
 //Delete a certain palce when clicking X button
 export const deletePlace = (deleteId) => (dispatch) => {
-  console.log('Delete place is running');
+  //console.log('Delete place is running');
   dispatch(detelePlaceRequest());
   return fetch(`${API_BASE_URL}/api/places`, {
     method: 'DELETE',
@@ -169,7 +122,7 @@ export const deletePlace = (deleteId) => (dispatch) => {
     body: JSON.stringify({deleteId})
   })
     .then(() => {
-      console.log('DELETE ID', deleteId);
+      //console.log('DELETE ID', deleteId);
       dispatch(deletePlaceSuccess(deleteId));
     })
     .catch(err => {dispatch(deletePlaceError(err));

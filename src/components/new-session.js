@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createSession} from '../actions/session-actions';
+import {createSession} from '../actions/session-Info.actions';
 import {Redirect} from 'react-router-dom';
 
 export class SessionCreator extends React.Component {
   
   componentDidMount() {
     const userLocation = this.props.userLocation;
-    console.log('Location in new place', userLocation);
+    //console.log('Location in new place', userLocation);
     this.props.dispatch(createSession((userLocation)));
   }
 
@@ -28,8 +28,8 @@ export class SessionCreator extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sessionId: state.sessionId,
-    userLocation: state.userLocation
+    sessionId: state.sessionInfo.sessionId,
+    userLocation: state.sessionInfo.userLocation
   };
 };
 

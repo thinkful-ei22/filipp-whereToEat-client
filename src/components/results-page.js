@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchMostPopPlace} from '../actions/session-actions';
-import './results-page.css';
-import './background-image.css';
+import {fetchMostPopPlace} from '../actions/places-Info.actions';
+import './styles/results-page.css';
+import './styles/background-image.css';
 import Hamburger from '../images/hamburger.png';
 import Sub from '../images/sub.png';
 import Sandwich from '../images/sandwich.png';
 import Soda from '../images/soda.png';
-import Coffee from '../images/soda.png';
+import Coffee from '../images/coffee.png';
 import Pancakes from '../images/pancakes.png';
 import IceCream from '../images/ice-cream.png';
 import Egg from '../images/egg.png';
@@ -17,7 +17,7 @@ import Fries from '../images/fries.png';
 export class ResultsPage extends React.Component {
 
   componentDidMount() {
-    console.log('RESULTS-PAGE componentDidMount');
+    //console.log('RESULTS-PAGE componentDidMount');
     const sessionId = this.props.match.params.sessionId;
     const userLocation = this.props.userLocation;
     this.props.dispatch(fetchMostPopPlace(sessionId, userLocation));
@@ -70,10 +70,10 @@ export class ResultsPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    places: state.places,
-    sessionId: state.sessionId,
-    popularPlace: state.popularPlace,
-    userLocation: state.userLocation
+    places: state.placesInfo.places,
+    sessionId: state.sessionInfo.sessionId,
+    popularPlace: state.placesInfo.popularPlace,
+    userLocation: state.sessionInfo.userLocation
   };
 };
 

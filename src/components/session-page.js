@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPlaces, addPlace, deletePlace} from '../actions/session-actions';
+import {fetchPlaces, addPlace, deletePlace} from '../actions/places-Info.actions';
 import {Link} from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import uuid4 from 'uuid/v4';
-import './session-page.css';
-import './background-image.css';
+import './styles/session-page.css';
+import './styles/background-image.css';
 import PizzaNotFull from '../images/pizza-no-slice.png';
 import Hamburger from '../images/hamburger.png';
 import Sub from '../images/sub.png';
 import Sandwich from '../images/sandwich.png';
 import Soda from '../images/soda.png';
-import Coffee from '../images/soda.png';
+import Coffee from '../images/coffee.png';
 import Pancakes from '../images/pancakes.png';
 import IceCream from '../images/ice-cream.png';
 import Egg from '../images/egg.png';
@@ -26,14 +26,14 @@ export class SessionForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log('SESSION-PAGE componentDidMount');
+    //console.log('SESSION-PAGE componentDidMount');
 
     let userId = localStorage.getItem('userId');
     if (!userId) {
       userId =  uuid4();
       localStorage.setItem('userId', userId);
     }
-    console.log('userId', userId);
+    //console.log('userId', userId);
     this.setState({userId: userId});
 
     const sessionId = this.props.match.params.sessionId;
@@ -110,8 +110,8 @@ export class SessionForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    places: state.places,
-    sessionId: state.sessionId
+    places: state.placesInfo.places,
+    sessionId: state.sessionInfo.sessionId
   };
 };
 
