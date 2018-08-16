@@ -42,7 +42,7 @@ export const addPlaceSuccess = place => ({
 
 export const ADD_PLACE_ERROR = 'ADD_PLACE_ERROR';
 export const addPlaceError = error => ({
-  type: ADD_PLACE_SUCCESS,
+  type: ADD_PLACE_ERROR,
   error
 });
 
