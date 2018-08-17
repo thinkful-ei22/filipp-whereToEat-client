@@ -9,9 +9,9 @@ One person goes to the website, enters the location of where they are trying to 
 
 ## Screenshots
 **Landing Page**
-![image](/README_PICS/landing-page.png)
+![image](/README_PICS/landing-page.PNG)
 **Input Page**
-![image](/README_PICS/input-page.png)
+![image](/README_PICS/input-page.PNG)
 **Results Page**
 ![image](/README_PICS/result-page.PNG)
 
