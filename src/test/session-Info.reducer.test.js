@@ -1,3 +1,5 @@
+/* global expect */
+
 import reducer from '../reducers/session-Info.reducer';
 
 import {

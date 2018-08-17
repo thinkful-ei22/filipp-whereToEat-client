@@ -35,7 +35,7 @@
 .pancake-art {
   position: absolute;
   top: 75%;
-  right: 25%;
+  right: 20%;
 }
 
 .ice-cream-art {
@@ -62,7 +62,7 @@
 .fries-art {
   position: absolute;
   top: 78%;
-  right: 45%;
+  right: 35%;
   transform: rotate(-25deg);
 }
 
