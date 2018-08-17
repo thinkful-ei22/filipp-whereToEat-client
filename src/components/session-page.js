@@ -82,7 +82,7 @@ export class SessionForm extends React.Component {
           <button type="button" className="clipboard-button">Save share link to clipboard</button>
         </CopyToClipboard>
         <h4>2. Enter places where you feel like eating today!</h4>
-        <span>{this.state.error? 'Please enter a name' : ''}</span>
+        <span className="error" >{this.state.error? 'Please enter a name' : ''}</span>
         <input type="text" className="place" ref="newPlace" onKeyUp={(event) => this.onSubmit(event)}
          placeholder="Restaurant name" aria-label="Enter Restaurant Name"/>
         <input type="button" className="add-to-list" value="Add to list" 

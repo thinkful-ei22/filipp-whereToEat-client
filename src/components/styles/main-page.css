@@ -48,6 +48,12 @@
   font-size: 20px;
 }
 
+.error {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 800px) and (max-height: 1030px) {
   .Main-page {
     width: 100%;

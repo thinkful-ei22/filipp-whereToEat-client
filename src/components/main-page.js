@@ -58,7 +58,7 @@ export class Main extends React.Component {
         </ul>
         <label htmlFor="user-location">In what area are you looking to eat?</label>
         <br/>
-        <span>{this.state.error? 'Please enter a location' : ''}</span>
+        <span className="error" >{this.state.error? 'Please enter a location' : ''}</span>
         <input onKeyUp={(event) => this.onSubmit(event)} type="text" 
         className="user-location" ref="newLocation" aria-label="Enter Location" 
         placeholder="City, State, or ZIP Code"/>
