@@ -9,11 +9,11 @@ One person goes to the website, enters the location of where they are trying to 
 
 ## Screenshots
 **Landing Page**
-![](./README_PICS.landing-page.png)
+![image](./README_PICS.landing-page.png)
 **Input Page**
-![](./README_PICS.input-page.png)
+![image](./README_PICS.input-page.png)
 **Results Page**
-![](./README_PICS.result-page.png)
+![image](./README_PICS.result-page.png)
 
 ## Tech Stack
 - Front End:
