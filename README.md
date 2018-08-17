@@ -35,6 +35,7 @@ This application does not have many components, and they are all located under s
 - new-session: User spends almost no time on this page. Whenever the page mounts it takes a unique id and creates a session using the id and the location entered by the user, and then it redirects them to /:sessionId/:location.
 - session-page: This is where all the input goes. Upon opening this page each user is given a UUID, and they are shown data only that they have entered. Everytime they add a place it makes a request to the back end to post to a mongo database. Users can also delete things from their list. After they are satisfied with the places they have entered they can click to continue to be taken to /results-page
 - results-page: Upon mounting, this component contacts the back end to receive the result, plucks out the needed data and puts it onto the page.
+
 **Back End**
 Link to my back end github: https://github.com/thinkful-ei22/filipp-whereToEat-server
 Pretty straight forward. Have my models and routes. Have only two models: one for all the entered places and one for the created sessionIds. Have 3 different routes. places.js containts 3 requests while the other routes only have one.
