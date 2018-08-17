@@ -1,13 +1,13 @@
-## Where should we eat?
-# Description
+# Where should we eat?
+## Description
 Have you ever had a difficult time deciding where to eat with a big group? Well I have, so I decided to create this small web application to help me with that.
 Basically what it does:
 One person goes to the website, enters the location of where they are trying to eat. The application creates a new unique session, which the individual can then share the given URL with the rest of the group. Every person in the group opens the URl, and they are brought straight to the input page of that specific session. All the people then enter a list of restaurants where they feel like eating today. After everyone is done adding to their list, then can go to the next page which gives them the result of all the restaurants entered for that specific session. The result page contains a name, address, telephone number, and rating of a restaurant. The users are also given a link to the YELP page of the restaurant and a link for directions to that restaurant. The restaurant is picked based on the location entered by the original person who created the session, and based on the most popular restaurant that has been added from all of the people. If there are two or more restaurants tied for first place, one of them is picked at random. I get the restaurant information using YELP API.
 **Done!** Go eat out, have fun, and enjoy your food.
 
-# Link to my deployed version on Heroku: https://filippwheretoeatclient.herokuapp.com/
+## Link to my deployed version on Heroku: https://filippwheretoeatclient.herokuapp.com/
 
-# Screenshots
+## Screenshots
 **Landing Page**
 ![](./README_PICS.landing-page.png)
 **Input Page**
@@ -15,7 +15,7 @@ One person goes to the website, enters the location of where they are trying to 
 **Results Page**
 ![](./README_PICS.result-page.png)
 
-# Tech Stack
+## Tech Stack
 - Front End:
   - Enzyme: For testing
   - React
@@ -28,7 +28,7 @@ One person goes to the website, enters the location of where they are trying to 
   - Node
   - Node-fetch
 
-# Key Code Parts
+## Key Code Parts
 **Front End**
 This application does not have many components, and they are all located under src/components/.
 - main-page: My landing page. The user enters the location, when they click to continue the location is stored and they are briefly taken to /new-session.
