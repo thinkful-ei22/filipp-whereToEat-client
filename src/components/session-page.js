@@ -14,9 +14,7 @@ import Soda from '../images/soda.png';
 import Coffee from '../images/coffee.png';
 import Pancakes from '../images/pancakes.png';
 import IceCream from '../images/ice-cream.png';
-import Egg from '../images/egg.png';
 import Drumstick from '../images/drumstick.png';
-import Fries from '../images/fries.png';
 
 export class SessionForm extends React.Component {
 
@@ -79,7 +77,7 @@ export class SessionForm extends React.Component {
         <img className="pizza-art" src={PizzaNotFull} alt='Pizza clip art'/>
         <h4>1. Share this link with your friends!</h4>
         <CopyToClipboard text={url}>
-          <button type="button" className="clipboard-button">Save share link to clipboard</button>
+          <button type="button" className="clipboard-button">Save to clipboard</button>
         </CopyToClipboard>
         <h4>2. Enter places where you feel like eating today!</h4>
         <span className="error" >{this.state.error? 'Please enter a name' : ''}</span>
@@ -100,9 +98,7 @@ export class SessionForm extends React.Component {
         <img className="coffee-art" src={Coffee} alt='Coffee clip art'/>
         <img className="pancake-art" src={Pancakes} alt='Pancakeclip art'/>
         <img className="ice-cream-art" src={IceCream} alt='Ice Cream Cone clip art'/>
-        <img className="egg-art" src={Egg} alt='Egg clip art'/>
         <img className="drumstick-art" src={Drumstick} alt='Chicken Leg clip art'/>
-        <img className="fries-art" src={Fries} alt='French Fries clip art'/>
       </div>
     );
   }

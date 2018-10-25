@@ -40,4 +40,4 @@ This application does not have many components, and they are all located under s
 Link to my back end github: https://github.com/thinkful-ei22/filipp-whereToEat-server
 Pretty straight forward. Have my models and routes. Have only two models: one for all the entered places and one for the created sessionIds. Have 3 different routes. places.js containts 3 requests while the other routes only have one.
 
-# Thanks for checking out my project!
+### Thanks for checking out my project!

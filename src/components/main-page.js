@@ -13,9 +13,7 @@ import Soda from '../images/soda.png';
 import Coffee from '../images/coffee.png';
 import Pancakes from '../images/pancakes.png';
 import IceCream from '../images/ice-cream.png';
-import Egg from '../images/egg.png';
 import Drumstick from '../images/drumstick.png';
-import Fries from '../images/fries.png';
 
 export class Main extends React.Component {
 
@@ -72,9 +70,7 @@ export class Main extends React.Component {
         <img className="coffee-art" src={Coffee} alt='Coffee clip art'/>
         <img className="pancake-art" src={Pancakes} alt='Pancakeclip art'/>
         <img className="ice-cream-art" src={IceCream} alt='Ice Cream Cone clip art'/>
-        <img className="egg-art" src={Egg} alt='Egg clip art'/>
         <img className="drumstick-art" src={Drumstick} alt='Chicken Leg clip art'/>
-        <img className="fries-art" src={Fries} alt='French Fries clip art'/>
       </div>
     );
   }
